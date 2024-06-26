@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify to MP3 Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify to MP3 Downloader</h1>
+        <form action="/fetch_tracks" method="post" class="form">
+            <label for="playlist_id">Spotify Playlist ID:</label>
+            <input type="text" id="playlist_id" name="playlist_id" class="input" required>
+            <button type="submit" class="button">Fetch Tracks</button>
+        </form>
+        {% if tracks %}
+            <form action="/download" method="post" class="form">
+                <input type="hidden" name="playlist_id" value="{{ playlist_id }}">
+                <ul class="tracks-list">
+                    {% for track in tracks %}
+                        <li>
+                            <input type="checkbox" id="track{{ loop.index }}" name="tracks" value="{{ track }}">
+                            <label for="track{{ loop.index }}">{{ track }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button type="submit" class="button">Download Selected Tracks</button>
+                <button type="button" class="button" onclick="selectAll()">Select All</button>
+            </form>
+        {% endif %}
+    </div>
+    <script>
+        function selectAll() {
+            const checkboxes = document.querySelectorAll('input[name="tracks"]');
+            checkboxes.forEach(checkbox => checkbox.checked = true);
+        }
+    </script>
+</body>
+</html>

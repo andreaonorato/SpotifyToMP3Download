@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ecf0f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ecf0f3;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 7px 7px 15px #babecc, -7px -7px 15px #ffffff;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.label, .input, .button, .tracks-list {
+    font-size: 1rem;
+}
+
+.input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ecf0f3;
+    box-shadow: inset 5px 5px 10px #babecc, inset -5px -5px 10px #ffffff;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ecf0f3;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #babecc, -5px -5px 10px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    box-shadow: 2px 2px 5px #babecc, -2px -2px 5px #ffffff;
+}
+
+.tracks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tracks-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tracks-list input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #333;
+}

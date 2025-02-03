@@ -1,2 +1,7 @@
-spotipy==2.19.0
-pytube3==12.11.3 
+spotipy
+pytube3
+Flask
+spotipy
+google-api-python-client
+yt-dlp
+gunicorn

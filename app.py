@@ -71,7 +71,7 @@ def download_mp3_from_youtube(youtube_url, output_dir):
     ydl_opts = {
         'format': 'bestaudio/best',
         'ffmpeg_location': '/tmp/ffmpeg/ffmpeg',  # Use FFmpeg from /tmp
-        'cookiefile': '/static/cookies-yt.txt',  # Add path to the exported cookies file
+        'cookies': '/static/cookies-yt.txt',  # Add path to the exported cookies file
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',

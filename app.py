@@ -70,7 +70,7 @@ def search_youtube_video(query):
 def download_mp3_from_youtube(youtube_url, output_dir):
     ydl_opts = {
         'format': 'bestaudio/best',
-        'ffmpeg_location': '/opt/bin/ffmpeg',  # Use the prebuilt FFmpeg binary
+        'ffmpeg_location': '/tmp/ffmpeg/ffmpeg',  # Use FFmpeg from /tmp
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -80,6 +80,7 @@ def download_mp3_from_youtube(youtube_url, output_dir):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([youtube_url])
+
 
 
 # =====================

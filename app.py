@@ -67,22 +67,20 @@ def search_youtube_video(query):
 # =====================
 # ✅ YouTube MP3 Downloader
 # =====================
-def download_mp3_from_youtube(youtube_url):
-    """Downloads an MP3 file from YouTube using yt-dlp"""
+def download_mp3_from_youtube(youtube_url, output_dir):
     ydl_opts = {
-        "format": "bestaudio/best",
-        "ffmpeg_location": "/usr/bin/ffmpeg",  # FFmpeg location for Render
-        "postprocessors": [{
-            "key": "FFmpegExtractAudio",
-            "preferredcodec": "mp3",
-            "preferredquality": "192",
+        'format': 'bestaudio/best',
+        'ffmpeg_location': '/opt/bin/ffmpeg',  # Use the prebuilt FFmpeg binary
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
         }],
-        "outtmpl": os.path.join(OUTPUT_DIR, "%(title)s.%(ext)s"),
+        'outtmpl': os.path.join(output_dir, '%(title)s.%(ext)s'),
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(youtube_url, download=True)
-        filename = ydl.prepare_filename(info_dict).replace(".webm", ".mp3").replace(".m4a", ".mp3")
-        return os.path.basename(filename)  # Return filename
+        ydl.download([youtube_url])
+
 
 # =====================
 # ✅ Flask Routes

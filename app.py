@@ -80,7 +80,9 @@ def download_mp3_from_youtube(youtube_url, output_dir):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([youtube_url])
-
+    
+    # Return the filename of the downloaded mp3
+    return os.path.join(output_dir, f"{youtube_url.split('=')[-1]}.mp3")
 
 
 # =====================
@@ -105,13 +107,14 @@ def download():
     for track in selected_tracks:
         youtube_url = search_youtube_video(track)
         if youtube_url:
-            filename = download_mp3_from_youtube(youtube_url)
+            # Pass both youtube_url and output_dir
+            filename = download_mp3_from_youtube(youtube_url, OUTPUT_DIR)
             downloaded_files.append(filename)
         else:
             print(f"Could not find YouTube video for {track}")
 
     if downloaded_files:
-        return redirect(url_for("serve_file", filename=downloaded_files[0]))  # Serve first file
+        return redirect(url_for("serve_file", filename=os.path.basename(downloaded_files[0])))  # Serve first file
     return redirect(url_for("index"))
 
 @app.route("/downloads/<filename>")
